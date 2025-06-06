@@ -3,12 +3,12 @@ import { CharacterCard } from '@/components/molecules/character-card';
 
 import type { Character } from '@/types/character';
 
-interface CharacterListProps {
+interface CharactersListProps {
   title: string;
   characters: Array<Character>;
 }
 
-export function CharacterList({ title, characters }: CharacterListProps) {
+export function CharactersList({ title, characters }: CharactersListProps) {
   if (characters.length === 0) {
     return (
       <section className="space-y-4">

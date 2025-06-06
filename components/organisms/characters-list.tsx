@@ -1,7 +1,7 @@
 import { Text } from '@/components/atoms/text';
 import { CharacterCard } from '@/components/molecules/character-card';
 
-import type { Character } from '@/types/character';
+import type { Character } from '@/services/domain';
 
 interface CharactersListProps {
   title: string;

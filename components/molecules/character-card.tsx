@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Text } from '@/components/atoms/text';
 
-import type { Character } from '@/types/character';
+import type { Character } from '@/services/domain';
 
 interface CharacterCardProps {
   character: Character;

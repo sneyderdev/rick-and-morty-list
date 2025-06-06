@@ -1,14 +1,20 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import Page from '@/app/page';
+import { CharactersListTemplate } from '@/components/templates/characters-list-template';
 
-describe('Page', () => {
-  it('renders a heading', () => {
-    render(<Page />);
+import { createMockCharacter } from '../utils/mocks';
 
-    const heading = screen.getByRole('heading', { level: 1 });
+describe('Page Components', () => {
+  it('renders character list template with characters', () => {
+    const mockCharacters = [
+      createMockCharacter(),
+      createMockCharacter({ id: '2', name: 'Morty Smith' }),
+    ];
 
-    expect(heading).toBeInTheDocument();
+    render(<CharactersListTemplate characters={mockCharacters} />);
+
+    expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
+    expect(screen.getByText('Morty Smith')).toBeInTheDocument();
   });
 });

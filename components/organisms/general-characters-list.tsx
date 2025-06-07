@@ -19,7 +19,7 @@ export function GeneralCharactersList({
   return (
     <CharactersList>
       <CharactersListHeader>
-        Starred Characters ({characters.length})
+        Characters ({characters.length})
       </CharactersListHeader>
       <CharactersListContent>
         {characters.map((character) => (

@@ -10,25 +10,25 @@ import { BackButton } from '@/components/atoms/back-button';
 import { BookmarkButton } from '@/components/molecules/bookmark-button';
 import { CharacterDetailItem } from '@/components/molecules/character-detail-item';
 
-interface CharacterDetailTemplateProps {
+interface CharacterDetailsContentProps {
   character: Character;
 }
 
-export function CharacterDetailTemplate({
+export function CharacterDetailsContent({
   character,
-}: CharacterDetailTemplateProps) {
+}: CharacterDetailsContentProps) {
   const router = useRouter();
 
   const handleBack = () => {
-    router.back();
+    router.push('/');
   };
 
   return (
-    <div className="min-h-dvh">
-      <header className="flex h-[70px] items-center gap-3 p-4 md:hidden">
+    <div className="fixed inset-0 lg:static">
+      <header className="flex h-[70px] items-center gap-3 p-4 lg:hidden">
         <BackButton onClick={handleBack} />
       </header>
-      <main className="p-6 pt-0 md:pt-6">
+      <div className="p-6 pt-0 lg:pt-6">
         <div className="space-y-4">
           <section className="space-y-2">
             <div className="relative w-max">
@@ -62,7 +62,7 @@ export function CharacterDetailTemplate({
             </div>
           </section>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

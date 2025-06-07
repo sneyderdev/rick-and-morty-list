@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getCharacter } from '@/services/api/actions';
 import { OPERATION_STATUS } from '@/services/api/consts';
 
-import { CharacterDetailTemplate } from '@/components/templates/character-detail-template';
+import { CharacterDetailsContent } from '@/components/organisms/character-details-content';
 
 interface CharacterDetailPageProps {
   params: Promise<{ id: string }>;
@@ -22,5 +22,5 @@ export default async function CharacterDetailPage({
 
   const character = response.data;
 
-  return <CharacterDetailTemplate character={character} />;
+  return <CharacterDetailsContent character={character} />;
 }

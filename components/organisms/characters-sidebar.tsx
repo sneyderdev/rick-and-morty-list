@@ -34,7 +34,7 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
   return (
     <aside
       className={cn(
-        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 py-6 lg:z-auto lg:w-[592px]',
+        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] lg:w-[592px]',
         isDetailsPage && 'hidden lg:block',
       )}
     >
@@ -43,10 +43,10 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
           Rick and Morty list
         </Text>
       </header>
-      <section>
+      <div>
         <BookmarkedCharactersList />
         <GeneralCharactersList characters={characters} />
-      </section>
+      </div>
     </aside>
   );
 }

@@ -14,7 +14,7 @@ export function AppLayoutTemplate({
   return (
     <div className="min-h-dvh lg:flex">
       <CharactersSidebar characters={characters} />
-      <main className="flex-1">{children}</main>
+      <main className="lg:shadow-main flex-1">{children}</main>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export function CharacterDetailsContent({
       <header className="flex h-[70px] items-center gap-3 p-4 lg:hidden">
         <BackButton onClick={handleBack} />
       </header>
-      <div className="p-6 pt-0 lg:pt-6">
+      <div className="p-6 pt-0 lg:px-[100px] lg:pt-10">
         <div className="space-y-4">
           <section className="space-y-2">
             <div className="relative w-max">

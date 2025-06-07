@@ -34,7 +34,7 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
   return (
     <aside
       className={cn(
-        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] lg:w-[592px]',
+        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
         isDetailsPage && 'hidden lg:block',
       )}
     >

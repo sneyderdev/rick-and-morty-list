@@ -10,9 +10,11 @@ import { Button } from '@/components/ui/button';
 
 interface BookmarkButtonProps {
   character: Character;
+
+  className?: string;
 }
 
-export function BookmarkButton({ character }: BookmarkButtonProps) {
+export function BookmarkButton({ character, className }: BookmarkButtonProps) {
   const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
 
   const bookmarked = isBookmarked(character.id);
@@ -35,6 +37,7 @@ export function BookmarkButton({ character }: BookmarkButtonProps) {
         bookmarked
           ? 'text-green-500 hover:text-green-500 [&_svg]:fill-green-500'
           : 'text-gray-300 hover:text-gray-400',
+        className,
       )}
       aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}
     >

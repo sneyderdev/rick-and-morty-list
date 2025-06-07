@@ -1,36 +1,28 @@
 'use server';
 
-import { API_BASE_URL, API_ERROR_MESSAGE, OPERATION_STATUS } from './consts';
-import { validateApiPayload, transformApiPayloadToDomain } from './utils';
-import { type GetCharactersPayload } from './types';
+import type { Character } from '@/services/domain';
+
+import type { ApiResponse } from './types';
+import { API_BASE_URL } from './consts';
+import { fetchWithValidation, normalizeApiResponse } from './utils';
+import { ApiPayloadSchema, ApiCharacterSchema } from './schemas';
 
 export async function getCharacters(
   page: number,
-): Promise<GetCharactersPayload> {
-  try {
-    const response = await fetch(`${API_BASE_URL}?page=${page}`);
+): Promise<ApiResponse<Array<Character>>> {
+  return fetchWithValidation(
+    `${API_BASE_URL}?page=${page}`,
+    ApiPayloadSchema,
+    (data) => normalizeApiResponse(data) as Array<Character>,
+  );
+}
 
-    if (!response.ok) {
-      return {
-        status: OPERATION_STATUS.ERROR,
-        message: API_ERROR_MESSAGE,
-      };
-    }
-
-    const data = await response.json();
-
-    const validatedData = validateApiPayload(data);
-
-    return {
-      status: OPERATION_STATUS.SUCCESS,
-      data: transformApiPayloadToDomain(validatedData),
-    };
-  } catch (error) {
-    console.error('Error fetching characters:', error);
-
-    return {
-      status: OPERATION_STATUS.ERROR,
-      message: API_ERROR_MESSAGE,
-    };
-  }
+export async function getCharacter(
+  id: number,
+): Promise<ApiResponse<Character>> {
+  return fetchWithValidation(
+    `${API_BASE_URL}/${id}`,
+    ApiCharacterSchema,
+    (data) => normalizeApiResponse(data) as Character,
+  );
 }

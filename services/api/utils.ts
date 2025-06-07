@@ -3,7 +3,7 @@ import type { ZodSchema } from 'zod';
 import type { Character } from '@/services/domain';
 
 import type { ApiPayload, ApiCharacter } from './schemas';
-import { API_ERROR_MESSAGE, OPERATION_STATUS } from './consts';
+import { API_ERROR_MESSAGE, OPERATION_STATUS, REVALIDATE_TIME } from './consts';
 
 export function validateApiResponse<T>(data: unknown, schema: ZodSchema<T>) {
   const result = schema.safeParse(data);
@@ -44,7 +44,11 @@ export async function fetchWithValidation<TSchema, TResult>(
   | { status: typeof OPERATION_STATUS.ERROR; message: string }
 > {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      next: {
+        revalidate: REVALIDATE_TIME,
+      },
+    });
 
     if (!response.ok) {
       return {

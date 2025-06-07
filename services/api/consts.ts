@@ -6,3 +6,5 @@ export const OPERATION_STATUS = {
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR',
 } as const;
+
+export const REVALIDATE_TIME = 3600;

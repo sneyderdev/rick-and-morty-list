@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import { BookmarksProvider } from '@/contexts/bookmarks-context';
+
 import './globals.css';
 
 const greycliffCF = localFont({
@@ -42,7 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${greycliffCF.variable} antialiased`}>{children}</body>
+      <body className={`${greycliffCF.variable} antialiased`}>
+        <BookmarksProvider>{children}</BookmarksProvider>
+      </body>
     </html>
   );
 }

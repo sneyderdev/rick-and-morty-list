@@ -2,6 +2,7 @@ import type { Character } from '@/services/domain';
 
 import { Text } from '@/components/atoms/text';
 import { CharactersList } from '@/components/organisms/characters-list';
+import { BookmarkedCharactersList } from '@/components/organisms/bookmarked-characters-list';
 
 interface CharactersListTemplateProps {
   characters: Array<Character>;
@@ -18,6 +19,7 @@ export function CharactersListTemplate({
         </Text>
       </header>
       <main>
+        <BookmarkedCharactersList />
         <CharactersList title="Characters" characters={characters} />
       </main>
     </div>

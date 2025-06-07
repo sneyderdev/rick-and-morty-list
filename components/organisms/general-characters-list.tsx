@@ -1,6 +1,6 @@
 'use client';
 
-import { useBookmarks } from '@/contexts/bookmarks-context';
+import type { Character } from '@/services/domain';
 
 import { CharacterCard } from '@/components/molecules/character-card';
 import {
@@ -9,18 +9,20 @@ import {
   CharactersListContent,
 } from './characters-list';
 
-export function BookmarkedCharactersList() {
-  const { state } = useBookmarks();
+interface GeneralCharactersListProps {
+  characters: Array<Character>;
+}
 
-  const { bookmarkedCharacters } = state;
-
+export function GeneralCharactersList({
+  characters,
+}: GeneralCharactersListProps) {
   return (
     <CharactersList>
       <CharactersListHeader>
-        Starred Characters ({bookmarkedCharacters.length})
+        Starred Characters ({characters.length})
       </CharactersListHeader>
       <CharactersListContent>
-        {bookmarkedCharacters.map((character) => (
+        {characters.map((character) => (
           <CharacterCard key={character.id} character={character} />
         ))}
       </CharactersListContent>

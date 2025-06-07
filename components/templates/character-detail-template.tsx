@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Text } from '@/components/atoms/text';
 import { BackButton } from '@/components/atoms/back-button';
 import { BookmarkButton } from '@/components/molecules/bookmark-button';
+import { CharacterDetailItem } from '@/components/molecules/character-detail-item';
 
 interface CharacterDetailTemplateProps {
   character: Character;
@@ -31,7 +32,7 @@ export function CharacterDetailTemplate({
         <div className="space-y-4">
           <section className="space-y-2">
             <div className="relative w-max">
-              <Avatar className="size-24">
+              <Avatar className="size-[76px]">
                 <AvatarImage src={character.image} alt={character.name} />
                 <AvatarFallback className="text-2xl">
                   {character.name.charAt(0)}
@@ -45,26 +46,21 @@ export function CharacterDetailTemplate({
               {character.name}
             </Text>
           </section>
-          <div className="space-y-4">
+          <section className="space-y-4" aria-labelledby="character-details">
+            <h2 id="character-details" className="sr-only">
+              Character Details
+            </h2>
             <div className="divide-y">
-              <div className="flex-1 py-4">
-                <Text as="h3" variant="heading">
-                  Specie
-                </Text>
-                <Text variant="muted" className="font-medium">
-                  {character.species}
-                </Text>
-              </div>
-              <div className="flex-1 py-4">
-                <Text as="h3" variant="heading">
-                  Status
-                </Text>
-                <Text variant="muted" className="font-medium">
-                  {character.status}
-                </Text>
-              </div>
+              <CharacterDetailItem
+                title="Specie"
+                description={character.species}
+              />
+              <CharacterDetailItem
+                title="Status"
+                description={character.status}
+              />
             </div>
-          </div>
+          </section>
         </div>
       </main>
     </div>

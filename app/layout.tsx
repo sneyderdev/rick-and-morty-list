@@ -3,6 +3,11 @@ import localFont from 'next/font/local';
 
 import { BookmarksProvider } from '@/contexts/bookmarks-context';
 
+import { getCharacters } from '@/services/api/actions';
+import { OPERATION_STATUS } from '@/services/api/consts';
+
+import { AppLayoutTemplate } from '@/components/templates/app-layout-template';
+
 import './globals.css';
 
 const greycliffCF = localFont({
@@ -37,15 +42,24 @@ export const metadata: Metadata = {
   description: 'Explore characters from the Rick and Morty universe',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const response = await getCharacters(1);
+
+  const characters =
+    response.status === OPERATION_STATUS.SUCCESS ? response.data : [];
+
   return (
     <html lang="en">
       <body className={`${greycliffCF.variable} antialiased`}>
-        <BookmarksProvider>{children}</BookmarksProvider>
+        <BookmarksProvider>
+          <AppLayoutTemplate characters={characters}>
+            {children}
+          </AppLayoutTemplate>
+        </BookmarksProvider>
       </body>
     </html>
   );

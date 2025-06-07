@@ -6,6 +6,7 @@ export function createMockCharacter(overrides?: Partial<Character>): Character {
     name: 'Rick Sanchez',
     species: 'Human',
     image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+    status: 'Alive',
     ...overrides,
   };
 }

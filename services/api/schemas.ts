@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CharacterApiSchema = z.object({
+export const ApiCharacterSchema = z.object({
   id: z.number(),
   name: z.string(),
   status: z.enum(['Alive', 'Dead', 'unknown']),
@@ -30,7 +30,9 @@ export const PaginationInfoSchema = z.object({
 
 export const ApiPayloadSchema = z.object({
   info: PaginationInfoSchema,
-  results: z.array(CharacterApiSchema),
+  results: z.array(ApiCharacterSchema),
 });
 
 export type ApiPayload = z.infer<typeof ApiPayloadSchema>;
+
+export type ApiCharacter = z.infer<typeof ApiCharacterSchema>;

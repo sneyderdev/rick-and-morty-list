@@ -1,29 +1,47 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Text } from '@/components/atoms/text';
-import { BookmarkButton } from './bookmark-button';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import type { Character } from '@/services/domain';
+
+import { cn } from '@/lib/utils';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { CharacterDetailItem } from './character-detail-item';
+import { BookmarkButton } from './bookmark-button';
 
 interface CharacterCardProps {
   character: Character;
 }
 
 export function CharacterCard({ character }: CharacterCardProps) {
+  const pathname = usePathname();
+
+  const isActive = pathname === `/character/${character.id}`;
+
   return (
-    <li className="flex items-center gap-4 py-4">
-      <Avatar>
-        <AvatarImage src={character.image} alt={character.name} />
-        <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
-      </Avatar>
-      <div className="flex-1">
-        <Text as="h3" variant="heading">
-          {character.name}
-        </Text>
-        <Text variant="muted">{character.species}</Text>
-      </div>
-      <BookmarkButton character={character} />
+    <li className="relative">
+      <Link
+        href={`/character/${character.id}`}
+        className={cn(
+          'hover:bg-primary-100 flex flex-1 items-center gap-4 rounded-xl transition-colors lg:px-5',
+          isActive && 'bg-primary-100',
+        )}
+      >
+        <Avatar>
+          <AvatarImage src={character.image} alt={character.name} />
+          <AvatarFallback>{character.name.charAt(0)}</AvatarFallback>
+        </Avatar>
+        <CharacterDetailItem
+          title={character.name}
+          description={character.species}
+        />
+      </Link>
+      <BookmarkButton
+        character={character}
+        className="absolute top-1/2 right-0 z-10 -translate-y-1/2 lg:-translate-x-5"
+      />
     </li>
   );
 }

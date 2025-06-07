@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { AppLayoutTemplate } from '@/components/templates/app-layout-template';
 import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
 import { CharactersSidebar } from '@/components/organisms/characters-sidebar';
+import { AppLayoutTemplate } from '@/components/templates/app-layout-template';
 
 import { createMockCharacter } from '../utils/mocks';
 import { TestWrapper } from '../utils/test-wrapper';

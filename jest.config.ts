@@ -11,7 +11,11 @@ const config: Config = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-  testPathIgnorePatterns: ['<rootDir>/__tests__/utils/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/__tests__/utils/',
+    '<rootDir>/__tests__/setup/',
+  ],
+  setupFilesAfterEnv: ['<rootDir>/__tests__/setup/localStorage.ts'],
 };
 
 export default createJestConfig(config);

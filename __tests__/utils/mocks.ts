@@ -9,3 +9,17 @@ export function createMockCharacter(overrides?: Partial<Character>): Character {
     ...overrides,
   };
 }
+
+export const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+};
+
+export const resetLocalStorageMocks = () => {
+  localStorageMock.getItem.mockClear();
+  localStorageMock.setItem.mockClear();
+  localStorageMock.removeItem.mockClear();
+  localStorageMock.clear.mockClear();
+};

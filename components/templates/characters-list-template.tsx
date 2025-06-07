@@ -1,7 +1,23 @@
+'use client';
+
+import dynamic from 'next/dynamic';
+
 import type { Character } from '@/services/domain';
 
 import { Text } from '@/components/atoms/text';
-import { CharactersList } from '@/components/organisms/characters-list';
+import { BookmarkedCharactersSkeleton } from '@/components/organisms/bookmarked-characters-skeleton';
+import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
+
+const BookmarkedCharactersList = dynamic(
+  () =>
+    import('@/components/organisms/bookmarked-characters-list').then(
+      (mod) => mod.BookmarkedCharactersList,
+    ),
+  {
+    ssr: false,
+    loading: () => <BookmarkedCharactersSkeleton />,
+  },
+);
 
 interface CharactersListTemplateProps {
   characters: Array<Character>;
@@ -18,7 +34,8 @@ export function CharactersListTemplate({
         </Text>
       </header>
       <main>
-        <CharactersList title="Characters" characters={characters} />
+        <BookmarkedCharactersList />
+        <GeneralCharactersList characters={characters} />
       </main>
     </div>
   );

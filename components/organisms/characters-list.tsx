@@ -1,45 +1,23 @@
 import { Text } from '@/components/atoms/text';
-import { CharacterCard } from '@/components/molecules/character-card';
 
-import type { Character } from '@/services/domain';
-
-interface CharactersListProps {
-  title: string;
-  characters: Array<Character>;
+function CharactersList({ children }: React.ComponentProps<'section'>) {
+  return <section>{children}</section>;
 }
 
-export function CharactersList({ title, characters }: CharactersListProps) {
-  if (characters.length === 0) {
-    return (
-      <section className="space-y-4">
-        <Text
-          variant="caption"
-          size="xs"
-          className="text-muted-foreground border-b py-4"
-        >
-          {title} (0)
-        </Text>
-        <Text variant="muted" size="sm">
-          No characters found
-        </Text>
-      </section>
-    );
-  }
-
+function CharactersListHeader({ children }: React.ComponentProps<typeof Text>) {
   return (
-    <section>
-      <Text
-        variant="caption"
-        size="xs"
-        className="text-muted-foreground border-b py-4"
-      >
-        {title} ({characters.length})
-      </Text>
-      <ul className="divide-y">
-        {characters.map((character) => (
-          <CharacterCard key={character.id} character={character} />
-        ))}
-      </ul>
-    </section>
+    <Text
+      variant="caption"
+      size="xs"
+      className="text-muted-foreground border-b py-4"
+    >
+      {children}
+    </Text>
   );
 }
+
+function CharactersListContent({ children }: React.ComponentProps<'ul'>) {
+  return <ul className="divide-y">{children}</ul>;
+}
+
+export { CharactersList, CharactersListHeader, CharactersListContent };

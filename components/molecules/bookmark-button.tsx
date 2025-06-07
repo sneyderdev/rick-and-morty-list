@@ -36,6 +36,7 @@ export function BookmarkButton({ character }: BookmarkButtonProps) {
           ? 'text-green-500 hover:text-green-500 [&_svg]:fill-green-500'
           : 'text-gray-300 hover:text-gray-400',
       )}
+      aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}
     >
       <Heart />
     </Button>

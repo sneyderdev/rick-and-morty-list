@@ -12,6 +12,12 @@ jest.mock('next/navigation', () => ({
   usePathname: () => '/',
 }));
 
+jest.mock('@/components/organisms/bookmarked-characters-list', () => ({
+  BookmarkedCharactersList: () => (
+    <div data-testid="bookmarked-characters-list">Starred Characters (0)</div>
+  ),
+}));
+
 describe('Page Components', () => {
   const mockCharacters = [
     createMockCharacter(),
@@ -26,10 +32,13 @@ describe('Page Components', () => {
     expect(screen.getByText('Rick and Morty list')).toBeInTheDocument();
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
     expect(screen.getByText('Morty Smith')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Search or filter results'),
+    ).toBeInTheDocument();
   });
 
   it('renders general characters list', () => {
-    render(<GeneralCharactersList characters={mockCharacters} />, {
+    render(<GeneralCharactersList initialCharacters={mockCharacters} />, {
       wrapper: TestWrapper,
     });
 
@@ -48,5 +57,8 @@ describe('Page Components', () => {
 
     expect(screen.getByText('Rick and Morty list')).toBeInTheDocument();
     expect(screen.getByText('Test Content')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Search or filter results'),
+    ).toBeInTheDocument();
   });
 });

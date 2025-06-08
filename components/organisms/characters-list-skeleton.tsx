@@ -5,12 +5,20 @@ import {
   CharactersListContent,
 } from './characters-list';
 
-export function BookmarkedCharactersSkeleton() {
+interface CharactersListSkeletonProps {
+  title: string;
+  count?: number;
+}
+
+export function CharactersListSkeleton({
+  title,
+  count = 3,
+}: CharactersListSkeletonProps) {
   return (
     <CharactersList>
-      <CharactersListHeader>Starred Characters</CharactersListHeader>
+      <CharactersListHeader>{title}</CharactersListHeader>
       <CharactersListContent>
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: count }).map((_, index) => (
           <CharacterCardSkeleton key={`CharacterCardSkeleton-${index}`} />
         ))}
       </CharactersListContent>

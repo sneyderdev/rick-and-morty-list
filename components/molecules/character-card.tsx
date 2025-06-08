@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import type { Character } from '@/services/domain';
 
@@ -17,13 +17,16 @@ interface CharacterCardProps {
 
 export function CharacterCard({ character }: CharacterCardProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const isActive = pathname === `/character/${character.id}`;
+
+  const href = `/character/${character.id}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
 
   return (
     <li className="relative">
       <Link
-        href={`/character/${character.id}`}
+        href={href}
         className={cn(
           'hover:bg-primary-100 flex flex-1 items-center gap-4 rounded-xl transition-colors lg:px-5',
           isActive && 'bg-primary-100',

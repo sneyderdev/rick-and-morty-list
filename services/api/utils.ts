@@ -3,7 +3,11 @@ import type { ZodSchema } from 'zod';
 import type { Character } from '@/services/domain';
 
 import type { ApiPayload, ApiCharacter } from './schemas';
-import { API_ERROR_MESSAGE, OPERATION_STATUS, REVALIDATE_TIME } from './consts';
+import {
+  API_ERROR_MESSAGES,
+  OPERATION_STATUS,
+  REVALIDATE_TIME,
+} from './consts';
 
 /**
  * Validates an API response against a Zod schema and returns the parsed data.
@@ -127,9 +131,14 @@ export async function fetchWithValidation<TSchema, TResult>(
     });
 
     if (!response.ok) {
+      const errorMessage =
+        response.status === 404
+          ? API_ERROR_MESSAGES.NOT_FOUND
+          : API_ERROR_MESSAGES.GENERAL;
+
       return {
         status: OPERATION_STATUS.ERROR,
-        message: API_ERROR_MESSAGE,
+        message: errorMessage,
       };
     }
 
@@ -146,7 +155,7 @@ export async function fetchWithValidation<TSchema, TResult>(
 
     return {
       status: OPERATION_STATUS.ERROR,
-      message: API_ERROR_MESSAGE,
+      message: API_ERROR_MESSAGES.NETWORK,
     };
   }
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { BookmarksProvider } from '@/contexts/bookmarks-context';
 
@@ -55,11 +56,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${greycliffCF.variable} antialiased`}>
-        <BookmarksProvider>
-          <AppLayoutTemplate characters={characters}>
-            {children}
-          </AppLayoutTemplate>
-        </BookmarksProvider>
+        <NuqsAdapter>
+          <BookmarksProvider>
+            <AppLayoutTemplate characters={characters}>
+              {children}
+            </AppLayoutTemplate>
+          </BookmarksProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

@@ -2,14 +2,19 @@
 
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
+
+import { FilteredCharacterProvider } from '@/contexts/filtered-characters-context';
 
 import type { Character } from '@/services/domain';
 
 import { cn } from '@/lib/utils';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { Text } from '@/components/atoms/text';
-import { BookmarkedCharactersSkeleton } from '@/components/organisms/bookmarked-characters-skeleton';
+import { SearchInput } from '@/components/molecules/search-input';
 import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
+import { CharactersListSkeleton } from '@/components/organisms/characters-list-skeleton';
 
 const BookmarkedCharactersList = dynamic(
   () =>
@@ -18,7 +23,7 @@ const BookmarkedCharactersList = dynamic(
     ),
   {
     ssr: false,
-    loading: () => <BookmarkedCharactersSkeleton />,
+    loading: () => <CharactersListSkeleton title="Starred Characters" />,
   },
 );
 
@@ -43,10 +48,19 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
           Rick and Morty list
         </Text>
       </header>
-      <div>
-        <BookmarkedCharactersList />
-        <GeneralCharactersList characters={characters} />
-      </div>
+
+      <Suspense fallback={<Skeleton className="h-9 w-full lg:h-[52px]" />}>
+        <SearchInput />
+      </Suspense>
+
+      <Suspense fallback={<CharactersListSkeleton title="Loading..." />}>
+        <FilteredCharacterProvider>
+          <div>
+            <BookmarkedCharactersList />
+            <GeneralCharactersList initialCharacters={characters} />
+          </div>
+        </FilteredCharacterProvider>
+      </Suspense>
     </aside>
   );
 }

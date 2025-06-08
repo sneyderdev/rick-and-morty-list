@@ -1,31 +1,56 @@
 'use client';
 
+import { useCharactersList } from '@/hooks/use-characters-list';
+
 import type { Character } from '@/services/domain';
 
 import { CharacterCard } from '@/components/molecules/character-card';
+import { CharactersEmptyState } from '@/components/molecules/characters-empty-state';
+import { CharactersListSkeleton } from '@/components/organisms/characters-list-skeleton';
 import {
   CharactersList,
   CharactersListHeader,
   CharactersListContent,
-} from './characters-list';
+} from '@/components/organisms/characters-list';
 
 interface GeneralCharactersListProps {
-  characters: Array<Character>;
+  initialCharacters: Array<Character>;
 }
 
 export function GeneralCharactersList({
-  characters,
+  initialCharacters,
 }: GeneralCharactersListProps) {
+  const { characters, isLoading, error, searchQuery } =
+    useCharactersList(initialCharacters);
+
+  if (isLoading) {
+    return (
+      <CharactersListSkeleton title="Characters (searching...)" count={3} />
+    );
+  }
+
+  const renderContent = () => {
+    if (error) {
+      return (
+        <CharactersEmptyState type="error" error={error} query={searchQuery} />
+      );
+    }
+
+    if (characters.length === 0) {
+      return <CharactersEmptyState type="no-characters" />;
+    }
+
+    return characters.map((character) => (
+      <CharacterCard key={character.id} character={character} />
+    ));
+  };
+
   return (
     <CharactersList>
       <CharactersListHeader>
-        Characters ({characters.length})
+        {error ? 'Characters (0)' : `Characters (${characters.length})`}
       </CharactersListHeader>
-      <CharactersListContent>
-        {characters.map((character) => (
-          <CharacterCard key={character.id} character={character} />
-        ))}
-      </CharactersListContent>
+      <CharactersListContent>{renderContent()}</CharactersListContent>
     </CharactersList>
   );
 }

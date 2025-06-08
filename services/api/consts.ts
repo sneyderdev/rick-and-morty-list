@@ -1,6 +1,10 @@
 export const API_BASE_URL = 'https://rickandmortyapi.com/api/character';
 
-export const API_ERROR_MESSAGE = 'Failed to fetch characters';
+export const API_ERROR_MESSAGES = {
+  GENERAL: 'Failed to fetch characters',
+  NOT_FOUND: 'Character not found',
+  NETWORK: 'Network error occurred',
+} as const;
 
 export const OPERATION_STATUS = {
   SUCCESS: 'SUCCESS',

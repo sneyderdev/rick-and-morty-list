@@ -1,5 +1,5 @@
 import { getCharacters } from '@/services/api/actions';
-import { OPERATION_STATUS, API_ERROR_MESSAGE } from '@/services/api/consts';
+import { OPERATION_STATUS, API_ERROR_MESSAGES } from '@/services/api/consts';
 
 import { createMockCharacter } from '@/__tests__/utils/mocks';
 
@@ -68,7 +68,7 @@ describe('getCharacters', () => {
     expect(result.status).toBe(OPERATION_STATUS.ERROR);
 
     if (result.status === OPERATION_STATUS.ERROR) {
-      expect(result.message).toBe(API_ERROR_MESSAGE);
+      expect(result.message).toBe(API_ERROR_MESSAGES.GENERAL);
     }
   });
 
@@ -80,7 +80,7 @@ describe('getCharacters', () => {
     expect(result.status).toBe(OPERATION_STATUS.ERROR);
 
     if (result.status === OPERATION_STATUS.ERROR) {
-      expect(result.message).toBe(API_ERROR_MESSAGE);
+      expect(result.message).toBe(API_ERROR_MESSAGES.NETWORK);
     }
   });
 });

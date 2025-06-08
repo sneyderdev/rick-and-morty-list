@@ -26,3 +26,13 @@ export async function getCharacter(
     (data) => normalizeApiResponse(data) as Character,
   );
 }
+
+export async function searchCharacters(
+  name: string,
+): Promise<ApiResponse<Array<Character>>> {
+  return fetchWithValidation(
+    `${API_BASE_URL}?name=${encodeURIComponent(name)}`,
+    ApiPayloadSchema,
+    (data) => normalizeApiResponse(data) as Array<Character>,
+  );
+}

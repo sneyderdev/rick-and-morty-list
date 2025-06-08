@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import { BookmarksProvider } from '@/contexts/bookmarks-context';
+import { SearchProvider } from '@/contexts/search-context';
 
 import { getCharacters } from '@/services/api/actions';
 import { OPERATION_STATUS } from '@/services/api/consts';
@@ -56,9 +57,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${greycliffCF.variable} antialiased`}>
         <BookmarksProvider>
-          <AppLayoutTemplate characters={characters}>
-            {children}
-          </AppLayoutTemplate>
+          <SearchProvider>
+            <AppLayoutTemplate characters={characters}>
+              {children}
+            </AppLayoutTemplate>
+          </SearchProvider>
         </BookmarksProvider>
       </body>
     </html>

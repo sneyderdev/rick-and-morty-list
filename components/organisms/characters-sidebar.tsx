@@ -8,8 +8,10 @@ import type { Character } from '@/services/domain';
 import { cn } from '@/lib/utils';
 
 import { Text } from '@/components/atoms/text';
-import { BookmarkedCharactersSkeleton } from '@/components/organisms/bookmarked-characters-skeleton';
+import { SearchFeedback } from '@/components/atoms/search-feedback';
+import { SearchInput } from '@/components/molecules/search-input';
 import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
+import { CharactersListSkeleton } from '@/components/organisms/characters-list-skeleton';
 
 const BookmarkedCharactersList = dynamic(
   () =>
@@ -18,7 +20,7 @@ const BookmarkedCharactersList = dynamic(
     ),
   {
     ssr: false,
-    loading: () => <BookmarkedCharactersSkeleton />,
+    loading: () => <CharactersListSkeleton title="Starred Characters" />,
   },
 );
 
@@ -43,9 +45,13 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
           Rick and Morty list
         </Text>
       </header>
+
+      <SearchInput />
+      <SearchFeedback />
+
       <div>
         <BookmarkedCharactersList />
-        <GeneralCharactersList characters={characters} />
+        <GeneralCharactersList initialCharacters={characters} />
       </div>
     </aside>
   );

@@ -11,37 +11,29 @@ import {
 } from '@/components/organisms/characters-list';
 
 export function BookmarkedCharactersList() {
-  const {
-    filteredCharacters,
-    hasSearchQuery,
-    hasBookmarkedCharacters,
-    hasFilteredResults,
-    searchQuery,
-  } = useBookmarkedCharactersList();
-
-  const getHeaderText = () => {
-    return `Starred Characters (${filteredCharacters.length})`;
-  };
+  const { bookmarkedCharacters, searchQuery } = useBookmarkedCharactersList();
 
   const renderContent = () => {
-    if (!hasBookmarkedCharacters) {
+    if (!bookmarkedCharacters.length) {
       return <CharactersEmptyState type="no-starred" />;
     }
 
-    if (hasSearchQuery && !hasFilteredResults) {
+    if (searchQuery && !bookmarkedCharacters.length) {
       return (
         <CharactersEmptyState type="no-starred-results" query={searchQuery} />
       );
     }
 
-    return filteredCharacters.map((character) => (
+    return bookmarkedCharacters.map((character) => (
       <CharacterCard key={character.id} character={character} />
     ));
   };
 
   return (
     <CharactersList>
-      <CharactersListHeader>{getHeaderText()}</CharactersListHeader>
+      <CharactersListHeader>
+        Starred Characters ({bookmarkedCharacters.length})
+      </CharactersListHeader>
       <CharactersListContent>{renderContent()}</CharactersListContent>
     </CharactersList>
   );

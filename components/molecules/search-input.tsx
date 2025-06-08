@@ -2,12 +2,12 @@
 
 import { Search } from 'lucide-react';
 
-import { useSearch } from '@/contexts/search-context';
+import { useSearch } from '@/hooks/use-search';
 
 import { Input } from '@/components/ui/input';
 
 export function SearchInput() {
-  const { state, setQuery } = useSearch();
+  const { query, setQuery } = useSearch();
 
   return (
     <div className="relative">
@@ -15,7 +15,7 @@ export function SearchInput() {
       <Input
         type="text"
         placeholder="Search or filter results"
-        value={state.query}
+        value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="px-10 lg:px-12"
       />

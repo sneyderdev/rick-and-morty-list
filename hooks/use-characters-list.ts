@@ -1,22 +1,20 @@
 import type { Character } from '@/services/domain';
 
-import { useSearch } from '@/contexts/search-context';
+import { useFilteredCharacters } from '@/contexts/filtered-characters-context';
 
 export function useCharactersList(initialCharacters: Array<Character>) {
-  const {
-    state: { results, ...searchState },
-  } = useSearch();
+  const { filteredCharactersState, searchQuery } = useFilteredCharacters();
 
-  const hasSearchCompleted =
-    searchState.hasSearchQuery &&
-    !searchState.isLoading &&
-    (results.length > 0 || searchState.error);
-
-  const charactersToShow = hasSearchCompleted ? results : initialCharacters;
+  if (!searchQuery) {
+    return {
+      ...filteredCharactersState,
+      characters: initialCharacters,
+      searchQuery,
+    };
+  }
 
   return {
-    ...searchState,
-    hasSearchCompleted,
-    charactersToShow,
+    ...filteredCharactersState,
+    searchQuery,
   };
 }

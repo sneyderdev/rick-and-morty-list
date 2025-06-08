@@ -20,48 +20,36 @@ interface GeneralCharactersListProps {
 export function GeneralCharactersList({
   initialCharacters,
 }: GeneralCharactersListProps) {
-  const {
-    hasSearchQuery,
-    hasSearchCompleted,
-    charactersToShow,
-    isLoading,
-    error,
-    query,
-  } = useCharactersList(initialCharacters);
+  const { characters, isLoading, error, searchQuery } =
+    useCharactersList(initialCharacters);
 
-  if (hasSearchQuery && isLoading) {
+  if (isLoading) {
     return (
       <CharactersListSkeleton title="Characters (searching...)" count={5} />
     );
   }
 
-  const getHeaderText = () => {
-    if (hasSearchCompleted) {
-      return error
-        ? 'Characters (0)'
-        : `Characters (${charactersToShow.length})`;
-    }
-
-    return `Characters (${charactersToShow.length})`;
-  };
-
   const renderContent = () => {
-    if (hasSearchQuery && error) {
-      return <CharactersEmptyState type="error" error={error} query={query} />;
+    if (error) {
+      return (
+        <CharactersEmptyState type="error" error={error} query={searchQuery} />
+      );
     }
 
-    if (charactersToShow.length === 0) {
+    if (characters.length === 0) {
       return <CharactersEmptyState type="no-characters" />;
     }
 
-    return charactersToShow.map((character) => (
+    return characters.map((character) => (
       <CharacterCard key={character.id} character={character} />
     ));
   };
 
   return (
     <CharactersList>
-      <CharactersListHeader>{getHeaderText()}</CharactersListHeader>
+      <CharactersListHeader>
+        {error ? 'Characters (0)' : `Characters (${characters.length})`}
+      </CharactersListHeader>
       <CharactersListContent>{renderContent()}</CharactersListContent>
     </CharactersList>
   );

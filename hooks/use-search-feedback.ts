@@ -1,21 +1,24 @@
-import { useSearch } from '@/contexts/search-context';
-import { useBookmarks } from '@/contexts/bookmarks-context';
+import { useFilteredCharacters } from '@/contexts/filtered-characters-context';
+
+import { useBookmarkedCharactersList } from './use-bookmarked-characters-list';
 
 export function useSearchFeedback() {
-  const { state: searchState } = useSearch();
-  const { state: bookmarksState } = useBookmarks();
+  const {
+    filteredCharactersState: { characters, isLoading },
+  } = useFilteredCharacters();
+  const { bookmarkedCharacters, searchQuery } = useBookmarkedCharactersList();
 
-  const filteredBookmarks = bookmarksState.bookmarkedCharacters.filter(
-    (character) =>
-      character.name.toLowerCase().includes(searchState.query.toLowerCase()),
-  );
+  if (isLoading) {
+    return {
+      searchQuery: null,
+      totalResults: 0,
+    };
+  }
 
-  const totalResults =
-    filteredBookmarks.length +
-    (searchState.error ? 0 : searchState.results.length);
+  const totalResults = bookmarkedCharacters.length + characters.length;
 
   return {
-    hasSearchQuery: searchState.hasSearchQuery,
+    searchQuery,
     totalResults,
   };
 }

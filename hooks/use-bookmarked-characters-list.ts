@@ -1,26 +1,29 @@
-import { useSearch } from '@/contexts/search-context';
+import { useQueryState } from 'nuqs';
+
 import { useBookmarks } from '@/contexts/bookmarks-context';
 
 export function useBookmarkedCharactersList() {
-  const { state: searchState } = useSearch();
-  const { state: bookmarksState } = useBookmarks();
+  const {
+    state: { bookmarkedCharacters },
+  } = useBookmarks();
 
-  const filteredCharacters = searchState.hasSearchQuery
-    ? bookmarksState.bookmarkedCharacters.filter((character) =>
-        character.name.toLowerCase().includes(searchState.query.toLowerCase()),
-      )
-    : bookmarksState.bookmarkedCharacters;
+  const [searchQuery] = useQueryState('search', {
+    defaultValue: '',
+  });
 
-  const hasBookmarkedCharacters =
-    bookmarksState.bookmarkedCharacters.length > 0;
+  if (!searchQuery) {
+    return {
+      searchQuery,
+      bookmarkedCharacters,
+    };
+  }
 
-  const hasFilteredResults = filteredCharacters.length > 0;
+  const filteredCharacters = bookmarkedCharacters.filter((character) =>
+    character.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return {
-    filteredCharacters,
-    hasSearchQuery: searchState.hasSearchQuery,
-    hasBookmarkedCharacters,
-    hasFilteredResults,
-    searchQuery: searchState.query,
+    searchQuery,
+    bookmarkedCharacters: filteredCharacters,
   };
 }

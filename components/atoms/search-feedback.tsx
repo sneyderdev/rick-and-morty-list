@@ -5,9 +5,9 @@ import { useSearchFeedback } from '@/hooks/use-search-feedback';
 import { Text } from '@/components/atoms/text';
 
 export function SearchFeedback() {
-  const { hasSearchQuery, totalResults } = useSearchFeedback();
+  const { searchQuery, totalResults } = useSearchFeedback();
 
-  if (!hasSearchQuery) {
+  if (!searchQuery) {
     return null;
   }
 

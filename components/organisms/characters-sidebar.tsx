@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 
+import { FilteredCharacterProvider } from '@/contexts/filtered-characters-context';
+
 import type { Character } from '@/services/domain';
 
 import { cn } from '@/lib/utils';
@@ -34,25 +36,27 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
   const isDetailsPage = pathname.startsWith('/character/');
 
   return (
-    <aside
-      className={cn(
-        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
-        isDetailsPage && 'hidden lg:block',
-      )}
-    >
-      <header>
-        <Text as="h1" variant="heading" size="2xl" className="font-bold">
-          Rick and Morty list
-        </Text>
-      </header>
+    <FilteredCharacterProvider>
+      <aside
+        className={cn(
+          'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
+          isDetailsPage && 'hidden lg:block',
+        )}
+      >
+        <header>
+          <Text as="h1" variant="heading" size="2xl" className="font-bold">
+            Rick and Morty list
+          </Text>
+        </header>
 
-      <SearchInput />
-      <SearchFeedback />
+        <SearchInput />
+        <SearchFeedback />
 
-      <div>
-        <BookmarkedCharactersList />
-        <GeneralCharactersList initialCharacters={characters} />
-      </div>
-    </aside>
+        <div>
+          <BookmarkedCharactersList />
+          <GeneralCharactersList initialCharacters={characters} />
+        </div>
+      </aside>
+    </FilteredCharacterProvider>
   );
 }

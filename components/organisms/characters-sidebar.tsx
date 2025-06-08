@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 import { FilteredCharacterProvider } from '@/contexts/filtered-characters-context';
 
@@ -9,6 +10,7 @@ import type { Character } from '@/services/domain';
 
 import { cn } from '@/lib/utils';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { Text } from '@/components/atoms/text';
 import { SearchInput } from '@/components/molecules/search-input';
 import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
@@ -35,26 +37,30 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
   const isDetailsPage = pathname.startsWith('/character/');
 
   return (
-    <FilteredCharacterProvider>
-      <aside
-        className={cn(
-          'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
-          isDetailsPage && 'hidden lg:block',
-        )}
-      >
-        <header>
-          <Text as="h1" variant="heading" size="2xl" className="font-bold">
-            Rick and Morty list
-          </Text>
-        </header>
+    <aside
+      className={cn(
+        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
+        isDetailsPage && 'hidden lg:block',
+      )}
+    >
+      <header>
+        <Text as="h1" variant="heading" size="2xl" className="font-bold">
+          Rick and Morty list
+        </Text>
+      </header>
 
+      <Suspense fallback={<Skeleton className="h-9 w-full lg:h-[52px]" />}>
         <SearchInput />
+      </Suspense>
 
-        <div>
-          <BookmarkedCharactersList />
-          <GeneralCharactersList initialCharacters={characters} />
-        </div>
-      </aside>
-    </FilteredCharacterProvider>
+      <Suspense fallback={<CharactersListSkeleton title="Loading..." />}>
+        <FilteredCharacterProvider>
+          <div>
+            <BookmarkedCharactersList />
+            <GeneralCharactersList initialCharacters={characters} />
+          </div>
+        </FilteredCharacterProvider>
+      </Suspense>
+    </aside>
   );
 }

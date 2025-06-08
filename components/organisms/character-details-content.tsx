@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import type { Character } from '@/services/domain';
 
@@ -18,12 +18,9 @@ export function CharacterDetailsContent({
   character,
 }: CharacterDetailsContentProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const url = `/${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
 
   const handleBack = () => {
-    router.push(url);
+    router.back();
   };
 
   return (

@@ -10,7 +10,6 @@ import type { Character } from '@/services/domain';
 import { cn } from '@/lib/utils';
 
 import { Text } from '@/components/atoms/text';
-import { SearchFeedback } from '@/components/atoms/search-feedback';
 import { SearchInput } from '@/components/molecules/search-input';
 import { GeneralCharactersList } from '@/components/organisms/general-characters-list';
 import { CharactersListSkeleton } from '@/components/organisms/characters-list-skeleton';
@@ -50,7 +49,6 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
         </header>
 
         <SearchInput />
-        <SearchFeedback />
 
         <div>
           <BookmarkedCharactersList />

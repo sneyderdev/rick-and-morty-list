@@ -32,12 +32,15 @@ export function FilteredCharacterProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [filteredCharactersState, setFilteredCharactersState] =
-    useState<FilteredCharactersState>(initialState);
-
   const [searchQuery] = useQueryState('search', {
     defaultValue: '',
   });
+
+  const [filteredCharactersState, setFilteredCharactersState] =
+    useState<FilteredCharactersState>({
+      ...initialState,
+      isLoading: searchQuery.trim() !== '',
+    });
 
   useEffect(() => {
     if (!searchQuery.trim()) {

@@ -25,7 +25,7 @@ export function GeneralCharactersList({
 
   if (isLoading) {
     return (
-      <CharactersListSkeleton title="Characters (searching...)" count={5} />
+      <CharactersListSkeleton title="Characters (searching...)" count={3} />
     );
   }
 

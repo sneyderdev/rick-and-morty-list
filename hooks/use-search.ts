@@ -1,28 +1,27 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { useQueryState } from 'nuqs';
 
 import { useDebounce } from './use-debounce';
 
 export function useSearch() {
-  const [query, setQuery] = useState('');
-  const debouncedQuery = useDebounce(query, 500);
-  const [searchState, setSearchState] = useQueryState('search', {
+  const [searchQuery, setSearchQuery] = useQueryState('search', {
     defaultValue: '',
   });
 
+  const [query, setQuery] = useState(searchQuery);
+  const debouncedQuery = useDebounce(query, 500);
+
   useEffect(() => {
     if (!debouncedQuery.trim()) {
-      setSearchState(null);
+      setSearchQuery(null);
 
       return;
     }
 
-    if (debouncedQuery !== searchState) {
-      setSearchState(debouncedQuery);
+    if (debouncedQuery !== searchQuery) {
+      setSearchQuery(debouncedQuery);
     }
-  }, [debouncedQuery, searchState, setSearchState]);
+  }, [debouncedQuery, searchQuery, setSearchQuery]);
 
   return {
     query,

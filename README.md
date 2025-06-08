@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>Rick and Morty List</h1>
+  <div>
+    <a href="rick-and-morty-list-chi.vercel.app">View</a>
+  <span> • </span>
+    <a href="https://github.com/sneyderdev/rick-and-morty-list/issues/">Report Bug</a>
+  <span> • </span>
+    <a href="https://github.com/sneyderdev/rick-and-morty-list/issues/">Request Feature</a>
+  </div>
+</div>
 
-## Getting Started
+## 🌟 About
 
-First, run the development server:
+Rick and Morty List is a modern, responsive web application that allows users to browse and bookmark characters from the popular TV show "Rick and Morty" powered by [Rick and Morty API](https://rickandmortyapi.com/).
+
+### 🎯 Features
+
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Real-time Data**: Fresh data from the Rick and Morty API.
+- **Character Browsing**: View all characters from the Rick and Morty API.
+- **Bookmarking System**: Save your favorite characters with persistent local storage.
+- **Character Details**: Detailed view for each character.
+- **Clean Navigation**: SEO-friendly URLs (`/character/:id`).
+- **Static Generation**: Pre-generated pages for optimal performance.
+
+### 👾 Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **API Integration**: [Rick and Morty API](https://rickandmortyapi.com/)
+- **Data Validation**: [Zod](https://zod.dev/)
+- **Testing**: [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/)
+
+## 📦 Getting Started
+
+To get started with the Rick and Morty List application, follow these steps:
+
+### 🛠️ Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/sneyderdev/rick-and-morty-list.git
+   cd rick-and-morty-list
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+   > **Note**: This project uses `pnpm` as the package manager. While `npm` and `yarn` may work, `pnpm` is recommended for consistency with the lock file.
+
+3. **Run the development server**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+
+### 🚀 Build & Deploy
+
+1. **Create a production build**
+
+   ```bash
+   pnpm build
+   ```
+
+2. **Start the production server**
+   ```bash
+   pnpm start
+   ```
+
+### 🧪 Testing
+
+Run the test suite:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run tests in watch mode:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm test:watch
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with 💜 by [@sneyderdev](https://github.com/sneyderdev)

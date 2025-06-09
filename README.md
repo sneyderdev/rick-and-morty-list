@@ -1,7 +1,8 @@
 <div align="center">
+   <img src="./app/opengraph-image.jpg" alt="App Preview" />
   <h1>Rick and Morty List</h1>
   <div>
-    <a href="rick-and-morty-list-chi.vercel.app">View</a>
+    <a href="https://rick-and-morty-list-chi.vercel.app/">View</a>
   <span> • </span>
     <a href="https://github.com/sneyderdev/rick-and-morty-list/issues/">Report Bug</a>
   <span> • </span>
@@ -22,6 +23,7 @@ Rick and Morty List is a modern, responsive web application that allows users to
 - **Character Details**: Detailed view for each character.
 - **Clean Navigation**: SEO-friendly URLs (`/character/:id`).
 - **Static Generation**: Pre-generated pages for optimal performance.
+- **Search Functionality**: Quickly find characters by name.
 
 ### 👾 Tech Stack
 
@@ -33,6 +35,7 @@ Rick and Morty List is a modern, responsive web application that allows users to
 - **API Integration**: [Rick and Morty API](https://rickandmortyapi.com/)
 - **Data Validation**: [Zod](https://zod.dev/)
 - **Testing**: [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/)
+- **Search Params State Management**: [nuqs](https://nuqs.47ng.com/)
 
 ## 📦 Getting Started
 

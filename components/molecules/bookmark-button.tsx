@@ -3,9 +3,16 @@
 import { Heart } from 'lucide-react';
 
 import { useBookmarks } from '@/contexts/bookmarks-context';
+
 import type { Character } from '@/services/domain';
+
 import { cn } from '@/lib/utils';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
 interface BookmarkButtonProps {
@@ -28,20 +35,27 @@ export function BookmarkButton({ character, className }: BookmarkButtonProps) {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={handleToggleBookmark}
-      className={cn(
-        'transition-none',
-        bookmarked
-          ? 'text-green-500 hover:text-green-500 [&_svg]:fill-green-500'
-          : 'text-gray-300 hover:text-gray-400',
-        className,
-      )}
-      aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}
-    >
-      <Heart />
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleToggleBookmark}
+          className={cn(
+            'text-secondary-600 transition-none',
+            bookmarked
+              ? 'text-secondary-600 hover:text-secondary-600 [&_svg]:fill-secondary-600'
+              : 'text-gray-300 hover:text-gray-400',
+            className,
+          )}
+          aria-label={bookmarked ? 'Remove bookmark' : 'Add bookmark'}
+        >
+          <Heart />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {bookmarked ? 'Remove bookmark' : 'Add bookmark'}
+      </TooltipContent>
+    </Tooltip>
   );
 }

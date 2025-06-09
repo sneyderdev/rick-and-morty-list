@@ -8,8 +8,8 @@ import type { Character } from '@/services/domain';
 import { cn } from '@/lib/utils';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { CharacterDetailItem } from './character-detail-item';
-import { BookmarkButton } from './bookmark-button';
+import { CharacterDetailItem } from '@/components/molecules/character-detail-item';
+import { BookmarkButton } from '@/components/molecules/bookmark-button';
 
 interface CharacterCardProps {
   character: Character;

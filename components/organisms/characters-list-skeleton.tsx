@@ -3,7 +3,7 @@ import {
   CharactersList,
   CharactersListHeader,
   CharactersListContent,
-} from './characters-list';
+} from '@/components/organisms/characters-list';
 
 interface CharactersListSkeletonProps {
   title: string;

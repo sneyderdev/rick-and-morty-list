@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useReducer,
-  ReactNode,
-  useEffect,
-} from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
 
 import type { Character } from '@/services/domain';
 
@@ -57,7 +51,7 @@ function bookmarksReducer(
 
 const LOCAL_STORAGE_KEY = 'rick-and-morty-bookmarks';
 
-export function BookmarksProvider({ children }: { children: ReactNode }) {
+export function BookmarksProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(bookmarksReducer, {
     bookmarkedCharacters: [],
   });

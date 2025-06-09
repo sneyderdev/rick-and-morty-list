@@ -14,6 +14,11 @@ const eslintConfig = [
   {
     ignores: ['.next/', 'node_modules/', 'dist/', 'pnpm-lock.yaml'],
   },
+  {
+    rules: {
+      'react/no-unescaped-entities': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;

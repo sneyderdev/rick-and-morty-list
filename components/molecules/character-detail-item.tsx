@@ -11,7 +11,7 @@ export function CharacterDetailItem({
 }: CharacterDetailItemProps) {
   return (
     <div className="flex-1 py-4">
-      <Text as="h3" variant="heading">
+      <Text as="h3" variant="heading" className="max-w-4/5">
         {title}
       </Text>
       <Text variant="muted">{description}</Text>

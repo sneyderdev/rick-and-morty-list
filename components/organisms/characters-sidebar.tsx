@@ -39,13 +39,13 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
   return (
     <aside
       className={cn(
-        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[592px]',
+        'max-h-dvh w-full space-y-4 overflow-y-auto px-6 pt-[42px] pb-6 lg:w-[376px] lg:px-4',
         isDetailsPage && 'hidden lg:block',
       )}
     >
       <header>
         <Text as="h1" variant="heading" size="2xl" className="font-bold">
-          Rick and Morty list
+          Rick and Morty List
         </Text>
       </header>
 

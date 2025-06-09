@@ -33,9 +33,9 @@ export function BookmarkButton({ character, className }: BookmarkButtonProps) {
       size="icon"
       onClick={handleToggleBookmark}
       className={cn(
-        'transition-none',
+        'text-secondary-600 transition-none',
         bookmarked
-          ? 'text-green-500 hover:text-green-500 [&_svg]:fill-green-500'
+          ? 'text-secondary-600 hover:text-secondary-600 [&_svg]:fill-secondary-600'
           : 'text-gray-300 hover:text-gray-400',
         className,
       )}

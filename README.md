@@ -1,4 +1,5 @@
 <div align="center">
+   <img src="./app/opengraph-image.jpg" alt="App Preview" />
   <h1>Rick and Morty List</h1>
   <div>
     <a href="https://rick-and-morty-list-chi.vercel.app/">View</a>

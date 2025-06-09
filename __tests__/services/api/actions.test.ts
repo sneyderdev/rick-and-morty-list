@@ -1,7 +1,7 @@
 import { getCharacters } from '@/services/api/actions';
 import { OPERATION_STATUS, API_ERROR_MESSAGES } from '@/services/api/consts';
 
-import { createMockCharacter } from '@/__tests__/utils/mocks';
+import { createMockCharacter } from '../../utils/mocks';
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;

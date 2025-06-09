@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
+import Link from 'next/link';
 
 import { FilteredCharacterProvider } from '@/contexts/filtered-characters-context';
 
@@ -45,7 +46,7 @@ export function CharactersSidebar({ characters }: CharactersSidebarProps) {
     >
       <header>
         <Text as="h1" variant="heading" size="2xl" className="font-bold">
-          Rick and Morty List
+          <Link href="/">Rick and Morty List</Link>
         </Text>
       </header>
 

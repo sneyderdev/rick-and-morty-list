@@ -4,9 +4,9 @@ import { Heart } from 'lucide-react';
 
 import { useBookmarks } from '@/contexts/bookmarks-context';
 
-import { cn } from '@/lib/utils';
-
 import type { Character } from '@/services/domain';
+
+import { cn } from '@/lib/utils';
 
 import {
   Tooltip,

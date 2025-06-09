@@ -10,7 +10,12 @@ interface EmptyStateProps {
 export function EmptyState({ message, className }: EmptyStateProps) {
   return (
     <div className={cn('grid h-20 place-items-center', className)}>
-      <Text variant="muted" size="sm" className="w-3/4" title={message}>
+      <Text
+        variant="muted"
+        size="sm"
+        className="w-3/4 text-center"
+        title={message}
+      >
         {message}
       </Text>
     </div>
